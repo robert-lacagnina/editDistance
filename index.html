@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Edit Distance Calculator</title>
+
+        <link rel="stylesheet" href="style.css">
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+        <div class="container z-depth-2">
+
+            <nav>
+                <div class="teal nav-wrapper">
+                    <h4 id="heading" class="center-align">Edit Distance Calculator</h4>
+                </div>
+            </nav>
+
+            <div class="row calc-main">
+                <form class="col s3 offset-m1">
+                    <div class="row">
+                        <div class="input-field ">
+                            <label for="word1">Word 1</label>
+                            <input id="word1" type="text" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field">
+                            <label for="word2">Word 2</label>
+                            <input id="word2" type="text" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col offset-s8"><a id="submitEditDistance" class="waves-effect waves-light btn">Go!</a></div>
+                    </div>
+                </form>
+                <div class="col s2 offset-m3" id="result">
+                    Result:
+                </div>
+            </div>
+        </div>
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+               $('#submitEditDistance').click(function () {
+
+                   var data = {word1: $("#word1").val(), word2: $("#word2").val()};
+
+                   $.ajax({
+                       type: "POST",
+                       url: "http://localhost:5000/edit-distance",
+                       data: data,
+                       datatype: "json",
+                       success: function () {
+                       }
+                   })
+               });
+            });
+        </script>
+
+
+    </body>
+</html>
